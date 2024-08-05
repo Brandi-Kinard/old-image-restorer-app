@@ -1,8 +1,3 @@
-"""Application to demo inpainting using streamlit.
-
-Run using: streamlit run image_inpaint_streamlit.py
-"""
-
 import streamlit as st
 import pathlib
 from streamlit_drawable_canvas import st_canvas
@@ -11,15 +6,12 @@ import numpy as np
 import io
 import base64
 from PIL import Image
+import os
 
-STREAMLIT_STATIC_PATH = pathlib.Path(st.__path__[0]) / 'static'
-
-# We create a downloads directory within the streamlit static asset directory
-# and we write output files to it.
-DOWNLOADS_PATH = (STREAMLIT_STATIC_PATH / "downloads")
+# Use /tmp directory for temporary files
+DOWNLOADS_PATH = pathlib.Path('/tmp/downloads')
 if not DOWNLOADS_PATH.is_dir():
     DOWNLOADS_PATH.mkdir()
-
 
 def get_image_download_link(img, filename, text):
     """Generates a link to download a particular image file."""
@@ -29,10 +21,8 @@ def get_image_download_link(img, filename, text):
     href = f'<a href="data:file/txt;base64,{img_str}" download="{filename}">{text}</a>'
     return href
 
-
 # Set title.
 st.sidebar.title('Image Inpaint')
-
 
 # Specify canvas parameters in application
 uploaded_file = st.sidebar.file_uploader("Upload Image to restore:", type=["png", "jpg"])
@@ -40,7 +30,6 @@ image = None
 res = None
 
 if uploaded_file is not None:
-
     # Convert the file to an opencv image.
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
     image = cv2.imdecode(file_bytes, 1)
@@ -67,7 +56,6 @@ if uploaded_file is not None:
     stroke = canvas_result.image_data
 
     if stroke is not None:
-
         if st.sidebar.checkbox('show mask'):
             st.image(stroke)
 
