@@ -4,7 +4,7 @@ A Python application utilizing OpenCV's inpainting and filtering techniques to r
 
 
 ## Live Application
-Check out the live app here: [Old Image Restorer App](https://old-image-restorer.streamlit.app/)
+Check out the live app here 👉 [Old Image Restorer App](https://old-image-restorer.streamlit.app/)
 
 
 ![image](https://github.com/Brandi-Kinard/old-image-restorer-app/blob/main/1.gif)
