@@ -22,7 +22,7 @@ def get_image_download_link(img, filename, text):
     return href
 
 # Set title.
-st.sidebar.title('Image Inpaint')
+st.sidebar.title('Old Image Restorer')
 
 # Specify canvas parameters in application
 uploaded_file = st.sidebar.file_uploader("Upload Image to restore:", type=["png", "jpg"])
